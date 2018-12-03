@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using RestAPIModule.Models;
+using WebApi.OutputCache.V2;
 
 namespace RestAPIModule.Controllers
 {
@@ -18,6 +19,8 @@ namespace RestAPIModule.Controllers
         private ProductsDBEntities db = new ProductsDBEntities();
 
         // GET: api/Products
+
+        [CacheOutput(ClientTimeSpan = 20)]
         public IQueryable<Product> GetProducts()
         {
             return db.Products;
